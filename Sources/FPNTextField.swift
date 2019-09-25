@@ -101,6 +101,7 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 		setupFlagButton()
 		setupPhoneCodeTextField()
 		setupLeftView()
+        setupRighttView()
 		setupCountryPicker()
 
 		keyboardType = .numberPad
@@ -143,6 +144,27 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 
 		leftView = wrapperView
 	}
+    
+    private func setupRighttView() {
+        let wrapperView = UIView()
+        
+        wrapperView.addSubview(flagButton)
+        wrapperView.addSubview(phoneCodeTextField)
+        
+        let views = ["flag": flagButton, "textField": phoneCodeTextField]
+        
+        flagWidthConstraint = NSLayoutConstraint(item: flagButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.width)
+        flagHeightConstraint = NSLayoutConstraint(item: flagButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 0, constant: flagButtonSize.height)
+        
+        flagButton.addConstraint(flagWidthConstraint!)
+        flagButton.addConstraint(flagHeightConstraint!)
+        
+        wrapperView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[flag][textField]|", options: [], metrics: nil, views: views))
+        wrapperView.addConstraint(NSLayoutConstraint(item: flagButton, attribute: .centerY, relatedBy: .equal, toItem: wrapperView, attribute: .centerY, multiplier: 1, constant: 0))
+        wrapperView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[textField]|", options: [], metrics: nil, views: views))
+        
+        rightView = wrapperView
+    }
 
 	open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
 		let leftViewFrame: CGRect = leftView?.frame ?? .zero

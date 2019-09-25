@@ -101,7 +101,6 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 		setupFlagButton()
 		setupPhoneCodeTextField()
 		setupLeftView()
-        setupRighttView()
 		setupCountryPicker()
 
 		keyboardType = .numberPad
@@ -145,7 +144,7 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 		leftView = wrapperView
 	}
     
-    private func setupRighttView() {
+    public func setupRightView() {
         let wrapperView = UIView()
         
         wrapperView.addSubview(flagButton)

@@ -174,6 +174,16 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 
 		return newRect
 	}
+    
+    open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        let leftViewFrame: CGRect = leftView?.frame ?? .zero
+        let size = leftViewSize
+        let width: CGFloat = min(bounds.size.width, size.width)
+        let height: CGFloat = min(bounds.size.height, size.height)
+        let newRect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: width, height: height)
+        
+        return newRect
+    }
 
 	private func setupCountryPicker() {
 		countryPicker.countryPickerDelegate = self

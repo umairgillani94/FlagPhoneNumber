@@ -97,10 +97,12 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 
 	private func setup() {
 		leftViewMode = .always
+        rightViewMode = .always
 
 		setupFlagButton()
 		setupPhoneCodeTextField()
 		setupLeftView()
+        setupRightView()
 		setupCountryPicker()
 
 		keyboardType = .numberPad

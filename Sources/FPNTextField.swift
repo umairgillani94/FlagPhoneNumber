@@ -37,6 +37,8 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 	private var formatter: NBAsYouTypeFormatter?
 
 	public var flagButton: UIButton = UIButton()
+    
+    public var isRtl = false
 
 	open override var font: UIFont? {
 		didSet {
@@ -160,7 +162,7 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
         flagButton.addConstraint(flagWidthConstraint!)
         flagButton.addConstraint(flagHeightConstraint!)
         
-        wrapperView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[flag][textField]|", options: [], metrics: nil, views: views))
+        wrapperView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[textField][flag]|", options: [], metrics: nil, views: views))
         wrapperView.addConstraint(NSLayoutConstraint(item: flagButton, attribute: .centerY, relatedBy: .equal, toItem: wrapperView, attribute: .centerY, multiplier: 1, constant: 0))
         wrapperView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[textField]|", options: [], metrics: nil, views: views))
         
@@ -173,6 +175,11 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 		let width: CGFloat = min(bounds.size.width, size.width)
 		let height: CGFloat = min(bounds.size.height, size.height)
 		let newRect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: width, height: height)
+        
+        if isRtl {
+            let Rect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: 20, height: 20)
+            return Rect
+        }
 
 		return newRect
 	}
@@ -183,6 +190,11 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
         let width: CGFloat = min(bounds.size.width, size.width)
         let height: CGFloat = min(bounds.size.height, size.height)
         let newRect: CGRect = CGRect(x: self.bounds.width - width, y: rightViewFrame.minY, width: width, height: height)
+        
+        if !isRtl {
+            let Rect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: 20, height: 20)
+            return Rect
+        }
         
         return newRect
     }

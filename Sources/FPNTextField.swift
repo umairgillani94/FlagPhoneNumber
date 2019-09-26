@@ -177,7 +177,7 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 		let newRect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: width, height: height)
         
         if isRtl {
-            let Rect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: height, height: 20)
+            let Rect: CGRect = CGRect(x: leftViewFrame.minX, y: leftViewFrame.minY, width: 20, height: height)
             return Rect
         }
 

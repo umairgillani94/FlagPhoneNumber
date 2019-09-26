@@ -97,12 +97,12 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
 
 	private func setup() {
 		leftViewMode = .always
-        rightViewMode = .always
+//        rightViewMode = .always
 
 		setupFlagButton()
 		setupPhoneCodeTextField()
 		setupLeftView()
-        setupRightView()
+//        setupRightView()
 		setupCountryPicker()
 
 		keyboardType = .numberPad
@@ -182,7 +182,7 @@ open class FPNTextField: UITextField, FPNCountryPickerDelegate, FPNDelegate {
         let size = leftViewSize
         let width: CGFloat = min(bounds.size.width, size.width)
         let height: CGFloat = min(bounds.size.height, size.height)
-        let newRect: CGRect = CGRect(x: rightViewFrame.minX, y: rightViewFrame.minY, width: width, height: height)
+        let newRect: CGRect = CGRect(x: self.bounds.width - width, y: rightViewFrame.minY, width: width, height: height)
         
         return newRect
     }
